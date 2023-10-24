@@ -1,2 +1,3 @@
-# Tp PyQt IHM
+# Tp IHM PyQt
 
+Prénom Nom
