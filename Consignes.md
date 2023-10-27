@@ -18,7 +18,7 @@ Il faut d'abord créer votre copie du projet _TP IHM PyQt - Groupe5_, copie sur 
 
 Votre repo est créé ! Maintenant, il faut en donner l'accès au·à la professeur·e:
 
-- Aller sur votre copie du projet: "TP IHM PyQt - Groupe5 - VotreNom". Vous devriez y voir un message indiquant que ce projet est issu d'un fork.
+- Aller sur votre copie du projet: "TP IHM PyQt - Groupe5 - VotreNom" (vous devriez y voir un message indiquant que ce projet est issu d'un fork).
 - Dans le menu à gauche, aller dans _Manage_ -> _Members_
 - Cliquez sur "Invite members" en haute à droite
 - Cherchez "Alice Loizeau" et sélectionnez
@@ -42,11 +42,11 @@ Vous allez maintenant pouvoir travailler sur le TP. Dans le dossier de votre pro
 Git vous permet de faire une sauvegarde de chaque état du projet au cours du temps. À chaque fois que vous ajoutez une fonctionnalité à votre projet ou que vous résolvez un bug, vous pouvez enregistrer l'état de votre code. Ce point dans le temps s'appelle un _commit_
 Pour ce TP, on vous demande de faire **un commit pour chaque question du TP**
 
-- Faites la première question du TP1 (Vous trouverez le sujet sur le portail du FIL https://www.fil.univ-lille.fr/portail/index.php?dipl=L&sem=S5&ue=IHM&label=Programme -> _cette page_ -> _TP5 : PyQt 1_)
+- Faites la première question du TP1 (Vous trouverez le sujet sur le portail du FIL https://www.fil.univ-lille.fr/portail/index.php?dipl=L&sem=S5&ue=IHM&label=Programme -> _cette page_ -> _TP5 : PyQt 1_). Notez que "les sources nécessaires à ce TP" sont déjà dans le repo que vous avez fork.
 - Sur votre terminal, placez-vous dans votre projet et tapez "git status". Vous devriez voir apparaître la liste des fichiers que vous avez créé et modifié.
 - Tapez ensuite "git add " suivi de la liste des fichiers que vous voulez mettre dans votre prochain commit. Si vous voulez ajouter tous les fichiers dernièrement modifiés, tapez "git add ."
 - Tapez "git status" à nouveau. Vous voyez apparaître les noms des fichiers modifiés, dont ceux que vous allez ajouter à votre commit.
-- Si la liste vous convient, tapez "git commit -m "Message"". Remplacez "message" par ce que vous avez fait dans ce commit. Par exemple "TP1 Question1", "Bug question3 résolu" etc.
+- Si la liste vous convient, tapez "git commit -m "Message"". Remplacez "message" par ce que vous avez fait dans ce commit. Par exemple "TP1 Question1", "TP2 Bug question3 résolu" etc.
 
 Vous avez maintenant créé votre commit, votre point dans le temps de l'état de votre projet. Vous pouvez faire plusieurs commit en local, mais les modifications ne sont enregistrées que sur votre ordinateur, pas sur le serveur. Pour envoyer vos modifications au serveur distant, il vous faut faire un _push_.
 
@@ -54,3 +54,5 @@ Vous avez maintenant créé votre commit, votre point dans le temps de l'état d
 - Tapez "git push", entrer, puis entrez vos identifiants gitlab.
 
 Si votre push s'est bien passé, vous devriez le voir sur gitlab. Rechargez la page de votre projet sur le gitlab: vous devriez y voir vos fichiers et les commits que vous avez réalisé.
+
+N'oubliez pas de push toutes vos modifications avant la fin du TP !
