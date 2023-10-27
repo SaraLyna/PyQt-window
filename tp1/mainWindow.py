@@ -111,21 +111,25 @@ class MainWindow(QMainWindow):
 
 
 	def quitApp(self):
-		print("slot quit")
+		print("app quit")
+		quit=QMessageBox(self)
+		quit.addButton(Yes)
+		quit.addButton(No)
+		quit.keyPressEvent()
 
 
 	def pasteFile(self):
-		print("")
+		print("paste File")
 
 	def cutFile(self):
-		print("")
+		print("cut file")
 
 	def newFile(self):
-		print("")
+		print("new file")
 
 
 	def copyFile(self):
-		print("")
+		print("copy file")
 
 
 
