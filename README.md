@@ -1,3 +1,3 @@
 # Tp IHM PyQt
 
-Prénom Nom
+Sara Lyna OUYAHIA
