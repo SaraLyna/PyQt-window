@@ -112,24 +112,50 @@ class MainWindow(QMainWindow):
 
 	def quitApp(self):
 		print("app quit")
-		quit=QMessageBox(self)
-		quit.addButton(Yes)
-		quit.addButton(No)
-		quit.keyPressEvent()
+		self.close()
 
 
 	def pasteFile(self):
 		print("paste File")
+		clipboard = QApplication.clipboard()
+        text = clipboard.text()
+        cursor = self.zoneCentrale.textCursor()
+        cursor.insertText(text)
+        self.zoneCentrale.setTextCursor(cursor)
+
+
 
 	def cutFile(self):
 		print("cut file")
-
+        cursor = self.zoneCentrale.textCursor()
+        selected_text = cursor.selectedText()
+        clipboard = QApplication.clipboard()
+        clipboard.setText(selected_text)
+        cursor.removeSelectedText()
+        
+        
+        
 	def newFile(self):
 		print("new file")
+		self.zoneCentrale.clear()
 
 
 	def copyFile(self):
 		print("copy file")
+		cursor = self.zoneCentrale.textCursor()
+        selected_text = cursor.selectedText()
+        clipboard = QApplication.clipboard()
+        clipboard.setText(selected_text)
+		
+		
+		
+	def closeEvent(self, event):
+        reply = QMessageBox.question(self, 'Confirmation', 'Êtes-vous sûr de vouloir quitter ?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+
 
 
 
