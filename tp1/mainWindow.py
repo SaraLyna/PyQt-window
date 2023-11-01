@@ -18,7 +18,7 @@ class MainWindow(QMainWindow):
 
 		self.zoneCentrale =QTextEdit(self)
 		self.setCentralWidget(self.zoneCentrale)
-	
+
 
 
 		newAct1 = QAction(QIcon("open.png"), "Open…", self )
@@ -28,7 +28,7 @@ class MainWindow(QMainWindow):
 		fileMenu.addAction(newAct1)
 		tools.addAction(newAct1)
 		newAct1.triggered.connect(self.openFile)
-		
+
 
 
 		newAct2 = QAction(QIcon("save.png"), "Save…", self )
@@ -66,7 +66,7 @@ class MainWindow(QMainWindow):
 		tools.addAction(newAct5)
 		newAct5.triggered.connect(self.cutFile)
 
-		
+
 
 		newAct6 = QAction(QIcon("new.png"), "New…", self )
 		newAct6.setShortcut( "Ctrl+N" )
@@ -75,7 +75,7 @@ class MainWindow(QMainWindow):
 		fileMenu.addAction(newAct6)
 		tools.addAction(newAct6)
 		newAct6.triggered.connect(self.newFile)
-		
+
 
 		newAct7 = QAction(QIcon("paste.png"), "Paste…", self )
 		newAct7.setShortcut( "Ctrl+V" )
@@ -85,29 +85,29 @@ class MainWindow(QMainWindow):
 		tools.addAction(newAct7)
 		newAct7.triggered.connect(self.pasteFile)
 
-		
+
 
 	def openFile(self):
 		fileName = QFileDialog.getOpenFileName( self,"Open File","sara.txt",
-		"*.txt") 
+		"*.txt")
 		print(fileName)
 
 		file=QFile(fileName[0])
 		file.open(QFile.ReadOnly)
 		qs=QTextStream(file)
 		self.zoneCentrale.setPlainText(qs.readAll())
-		
+
 
 
 	def saveFile(self):
 		fileName2 = QFileDialog.getSaveFileName( self,"Save File","lol.txt",
-		"*.txt") 
+		"*.txt")
 		print(fileName2)
 		file2=QFile(fileName2[0])
 		file2.open(QFile.WriteOnly)
 		qs=QTextStream(file2)
 		self.zoneCentrale.toPlainText()
-	
+
 
 
 	def quitApp(self):
@@ -132,9 +132,9 @@ class MainWindow(QMainWindow):
         clipboard = QApplication.clipboard()
         clipboard.setText(selected_text)
         cursor.removeSelectedText()
-        
-        
-        
+
+
+
 	def newFile(self):
 		print("new file")
 		self.zoneCentrale.clear()
@@ -146,9 +146,9 @@ class MainWindow(QMainWindow):
         selected_text = cursor.selectedText()
         clipboard = QApplication.clipboard()
         clipboard.setText(selected_text)
-		
-		
-		
+
+
+
 	def closeEvent(self, event):
         reply = QMessageBox.question(self, 'Confirmation', 'Êtes-vous sûr de vouloir quitter ?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
@@ -173,8 +173,3 @@ def main(args):
 if __name__ == "__main__":
 	print("Exécution du programme")
 	main(sys.argv)
-
-
-
-
-	
