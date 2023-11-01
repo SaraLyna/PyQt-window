@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 
 
 class MainWindow(QMainWindow):
-
+    
 	def __init__(self):
 		QMainWindow.__init__(self)
 		bar=self.menuBar()
@@ -107,31 +107,40 @@ class MainWindow(QMainWindow):
 		file2.open(QFile.WriteOnly)
 		qs=QTextStream(file2)
 		self.zoneCentrale.toPlainText()
-
-
-
+	
 	def quitApp(self):
 		print("app quit")
 		self.close()
-
-
+		
+		
+		
+		
+	def closeEvent(self, event):
+		reply = QMessageBox.question(self, 'Confirmation', 'Êtes-vous sûr de vouloir quitter ?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+		if reply == QMessageBox.Yes:
+			event.accept()
+		else:
+			event.ignore()
+            
+            
+            
 	def pasteFile(self):
 		print("paste File")
 		clipboard = QApplication.clipboard()
-        text = clipboard.text()
-        cursor = self.zoneCentrale.textCursor()
-        cursor.insertText(text)
-        self.zoneCentrale.setTextCursor(cursor)
+		text = clipboard.text()
+		cursor = self.zoneCentrale.textCursor()
+		cursor.insertText(text)
+		self.zoneCentrale.setTextCursor(cursor)
 
 
 
 	def cutFile(self):
 		print("cut file")
-        cursor = self.zoneCentrale.textCursor()
-        selected_text = cursor.selectedText()
-        clipboard = QApplication.clipboard()
-        clipboard.setText(selected_text)
-        cursor.removeSelectedText()
+		cursor = self.zoneCentrale.textCursor()
+		selected_text = cursor.selectedText()
+		clipboard = QApplication.clipboard()
+		clipboard.setText(selected_text)
+		cursor.removeSelectedText()
 
 
 
@@ -143,20 +152,11 @@ class MainWindow(QMainWindow):
 	def copyFile(self):
 		print("copy file")
 		cursor = self.zoneCentrale.textCursor()
-        selected_text = cursor.selectedText()
-        clipboard = QApplication.clipboard()
-        clipboard.setText(selected_text)
-
-
-
-	def closeEvent(self, event):
-        reply = QMessageBox.question(self, 'Confirmation', 'Êtes-vous sûr de vouloir quitter ?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            event.accept()
-        else:
-            event.ignore()
-
-
+		selected_text = cursor.selectedText()
+		clipboard = QApplication.clipboard()
+		clipboard.setText(selected_text)
+		
+		
 
 
 
