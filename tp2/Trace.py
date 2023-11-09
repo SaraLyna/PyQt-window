@@ -11,4 +11,4 @@ from PyQt5.QtCore import *
 class Trace():
 
 	def __init__(self):
-		Trace.__init__(self)
+		super().__init__(self)

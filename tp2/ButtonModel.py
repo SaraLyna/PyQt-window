@@ -10,26 +10,37 @@ from PyQt5.QtCore import *
 
 class ButtonModel():
 
-	def __init__(self, idle, hover, pressIn, pressOut):
-		ButtonModel.__init__(self)
-		self.idle = idle
-		self.hover = hover
-		self.pressIn = pressIn
-		self.pressOut = pressOut
+	idle = 0
+	hover = 1
+	pressIn = 2
+	pressOut = 3
+
+	def __init__(self):
+		self.state = ButtonModel.idle
 		
-	def enter():
+		
+	def enter(self):
+		if self.state == ButtonModel.idle | self.state == ButtonModel.pressOut :
+			self.state == ButtonModel.hover | self.state == ButtonModel.pressIn
+	
+	def leave(self):
+		if self.state == ButtonModel.hover | self.state == ButtonModel.pressIn :
+			self.state == ButtonModel.idle | self.state == ButtonModel.pressOut
+	
+	def press(self):
+		if self.state == ButtonModel.hover:
+			self.state == ButtonModel.pressIn
 	
 	
-	def leave():
+	def release(self):
+		if self.state == ButtonModel.pressOut | self.state == ButtonModel.pressIn :
+			self.state == ButtonModel.idle | self.state == ButtonModel.action
 	
 	
-	def press():
 	
-	
-	def release():
-	
-	
-	def action():
+	def action(self):
+		if self.state == ButtonModel.pressIn:
+			print("pressed")
 	
 	
 	

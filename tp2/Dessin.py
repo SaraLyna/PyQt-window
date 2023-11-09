@@ -6,7 +6,7 @@ from PyQt5.QtCore import *
 class Dessin(QMainWindow):
 
 	def __init__(self):
-		Dessin.__init__(self)
+		super().__init__(self)
 
 
 

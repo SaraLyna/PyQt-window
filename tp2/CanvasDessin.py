@@ -13,7 +13,7 @@ from PyQt5.QtCore import *
 class CanvasDessin(QWidget):
 
 	def __init__(self):
-		CanvasDessin.__init__(self)
+		super().__init__(self)
 
 
 
