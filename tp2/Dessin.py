@@ -19,11 +19,16 @@ class Dessin(QMainWindow):
 
 def main(args):
 	print(args)
+ 
+    window = QMainWindow()
 
 	app = QApplication(args)
 	dessin= Dessin()
 
 	dessin.show()
+
+	window.show()
+	
 	app.exec_()
 	return
 

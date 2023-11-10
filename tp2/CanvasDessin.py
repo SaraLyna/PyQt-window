@@ -10,7 +10,7 @@ class CanvasDessin(QWidget):
 
 	def __init__(self):
 		super().__init__()
-		self.widget = QWidget(None).setMinimumSize(150,200)
+		self.widget = QWidget(None).setMinimumSize(800,600)
 		self.list = [Trace]
 
 
@@ -20,6 +20,24 @@ class CanvasDessin(QWidget):
 		painter = QPainterPath()
 		for i in list :
 			painter.setBrush(Qt.red)
+
+
+	def press(self, event):
+
+
+		self.update()
+
+
+	def drag(self, event):
+
+
+		self.update()
+
+
+	def release(self, event):
+
+
+		self.update()
 
 
 
