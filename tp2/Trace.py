@@ -12,3 +12,6 @@ class Trace():
 
 	def __init__(self):
 		super().__init__(self)
+		self.points = [width, color]
+		self.width = int
+		self.color = QColor()

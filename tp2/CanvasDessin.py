@@ -3,17 +3,24 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
+from Trace import Trace
 
-
-
-""" Exercice 2 : Zone de dessin"""
-
-"""1e Etape: Créer un nouveau projet affichant une zone de dessin"""
 
 class CanvasDessin(QWidget):
 
 	def __init__(self):
-		super().__init__(self)
+		super().__init__()
+		self.widget = QWidget(None).setMinimumSize(150,200)
+		self.list = [Trace]
+
+
+
+	def paintEvent(self, event):
+
+		painter = QPainterPath()
+		for i in list :
+			painter.setBrush(Qt.red)
+
 
 
 

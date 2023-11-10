@@ -20,27 +20,35 @@ class ButtonModel():
 		
 		
 	def enter(self):
-		if self.state == ButtonModel.idle | self.state == ButtonModel.pressOut :
-			self.state == ButtonModel.hover | self.state == ButtonModel.pressIn
+		if self.state == ButtonModel.idle :
+			self.state = ButtonModel.hover 
+		elif self.state == ButtonModel.pressOut :
+			self.state = ButtonModel.pressIn
 	
 	def leave(self):
-		if self.state == ButtonModel.hover | self.state == ButtonModel.pressIn :
-			self.state == ButtonModel.idle | self.state == ButtonModel.pressOut
+		if self.state == ButtonModel.hover : 
+			self.state = ButtonModel.idle 
+		elif self.state == ButtonModel.pressIn :
+			self.state = ButtonModel.pressOut
 	
 	def press(self):
 		if self.state == ButtonModel.hover:
-			self.state == ButtonModel.pressIn
+			self.state = ButtonModel.pressIn
 	
 	
 	def release(self):
-		if self.state == ButtonModel.pressOut | self.state == ButtonModel.pressIn :
-			self.state == ButtonModel.idle | self.state == ButtonModel.action
+		if self.state == ButtonModel.pressOut :
+			self.state = ButtonModel.idle 
+		elif self.state == ButtonModel.pressIn :
+			self.state = ButtonModel.action(self)
 	
 	
 	
 	def action(self):
 		if self.state == ButtonModel.pressIn:
+			self.state = ButtonModel.pressOut
 			print("pressed")
+			return self.hover
 	
 	
 	

@@ -14,34 +14,35 @@ from ButtonModel import ButtonModel
 
 class CanvasButton(QWidget):
 
-	defaultCol = QColor(253,108,158)
+	defaultCol = QColor(Qt.lightGray)
 
-	hoverCol = QColor(0,255,120)
-	pressCol = QColor(0,255,255)
+	hoverCol = QColor(Qt.cyan)
+	pressCol = QColor(Qt.blue)
 
-	def __init__(self,model):
+	def __init__(self):
 		super().__init__()
-		self.bbox = QRect(50,50,50,50)
-		self.cursorOver = False
-		self.buttonModel = model
+		self.bbox = QRect(200,100,200,100)
+		self.cursorOver = True
+		self.buttonModel = ButtonModel()
 
 
 	def paintEvent(self, event):
 
 		painter = QPainter(self)
 
-		if self.buttonModel.state ==  ButtonModel.idle :
+		if self.cursorOver :
+			if self.buttonModel.state ==  ButtonModel.hover :
+				painter.setBrush(CanvasButton.hoverCol)
+		
+			if self.buttonModel.state ==  ButtonModel.pressIn :
+				painter.setBrush(CanvasButton.pressCol)
+
+			if self.buttonModel.state ==  ButtonModel.pressOut :
+				painter.setBrush(CanvasButton.hoverCol)
+
+
+		else:
 			painter.setBrush(CanvasButton.defaultCol)
-
-		if self.buttonModel.state ==  ButtonModel.hover :
-			painter.setBrush(CanvasButton.hoverCol)
-
-		if self.buttonModel.state ==  ButtonModel.pressIn :
-			painter.setBrush(CanvasButton.pressCol)
-
-		if self.buttonModel.state ==  ButtonModel.pressOut :
-			painter.setBrush(CanvasButton.hoverCol)
-
 		painter.drawEllipse(self.bbox)
 
 
@@ -52,6 +53,7 @@ class CanvasButton(QWidget):
 	def mouseMoveEvent(self, event):
 		if self.cursorOnEllipse(event.pos()):
 			self.buttonModel.enter()
+
 		else :
 			self.buttonModel.leave()
 
@@ -63,14 +65,16 @@ class CanvasButton(QWidget):
 	def mousePressEvent(self, event):
 		if self.cursorOnEllipse(event.pos()):
 			self.buttonModel.press()
+			self.cursorOver = not self.cursorOver
+			print("pressed")
 
 		self.update()
-		print("pressed")
+		
 
 
 
 	
-	def mouseReleaseEvent(self, eventpressOut):
+	def mouseReleaseEvent(self, event):
 		if self.buttonModel.state == ButtonModel.pressIn :
 			self.buttonModel.action()
 		self.buttonModel.release()
@@ -93,8 +97,7 @@ def main(args):
 	app = QApplication(args)
 	window= QMainWindow()
 
-	model= ButtonModel()
-	canvas=CanvasButton(model)
+	canvas=CanvasButton()
 
 	window.setCentralWidget(canvas)
 	
