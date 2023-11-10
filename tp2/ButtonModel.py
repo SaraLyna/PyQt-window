@@ -45,10 +45,8 @@ class ButtonModel():
 	
 	
 	def action(self):
-		if self.state == ButtonModel.pressIn:
-			self.state = ButtonModel.pressOut
-			print("pressed")
-			return self.hover
+		print("action")
+		return self.hover
 	
 	
 	

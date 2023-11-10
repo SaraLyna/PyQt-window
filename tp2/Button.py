@@ -19,30 +19,18 @@ class CanvasButton(QWidget):
 	hoverCol = QColor(Qt.cyan)
 	pressCol = QColor(Qt.blue)
 
+
 	def __init__(self):
 		super().__init__()
 		self.bbox = QRect(200,100,200,100)
-		self.cursorOver = True
 		self.buttonModel = ButtonModel()
+		self.sara = CanvasButton.defaultCol
+		self.setMouseTracking(True)
 
 
 	def paintEvent(self, event):
-
 		painter = QPainter(self)
-
-		if self.cursorOver :
-			if self.buttonModel.state ==  ButtonModel.hover :
-				painter.setBrush(CanvasButton.hoverCol)
-		
-			if self.buttonModel.state ==  ButtonModel.pressIn :
-				painter.setBrush(CanvasButton.pressCol)
-
-			if self.buttonModel.state ==  ButtonModel.pressOut :
-				painter.setBrush(CanvasButton.hoverCol)
-
-
-		else:
-			painter.setBrush(CanvasButton.defaultCol)
+		painter.setBrush(self.sara)
 		painter.drawEllipse(self.bbox)
 
 
@@ -53,20 +41,23 @@ class CanvasButton(QWidget):
 	def mouseMoveEvent(self, event):
 		if self.cursorOnEllipse(event.pos()):
 			self.buttonModel.enter()
+			self.sara = self.hoverCol
+			if self.buttonModel.state == ButtonModel.pressIn :
+				self.sara = self.pressCol
 
 		else :
 			self.buttonModel.leave()
+			self.sara = self.defaultCol
 
 		self.update()
-		print("moved")
+		
 
 
 
-	def mousePressEvent(self, event):
+	def mousePressEvent(self, event) :
 		if self.cursorOnEllipse(event.pos()):
 			self.buttonModel.press()
-			self.cursorOver = not self.cursorOver
-			print("pressed")
+			self.sara = self.pressCol
 
 		self.update()
 		
@@ -75,12 +66,19 @@ class CanvasButton(QWidget):
 
 	
 	def mouseReleaseEvent(self, event):
-		if self.buttonModel.state == ButtonModel.pressIn :
-			self.buttonModel.action()
-		self.buttonModel.release()
+		if self.cursorOnEllipse(event.pos()):
+			if self.buttonModel.state == ButtonModel.pressIn  :
+				self.buttonModel.action()
+			self.buttonModel.release()
+			self.sara = self.hoverCol
+		if not self.cursorOnEllipse(event.pos()):
+			if self.buttonModel.state == ButtonModel.pressIn  :
+				self.buttonModel.action()
+			self.buttonModel.release()
+			self.sara = self.defaultCol
+
 			
 		self.update()
-		print("released")
 
 
 
