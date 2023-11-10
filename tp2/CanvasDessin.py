@@ -16,10 +16,13 @@ class CanvasDessin(QWidget):
 
 
 	def paintEvent(self, event):
-
-		painter = QPainterPath()
+		
+		painter = QPainter(self)
+		path = QPainterPath()
 		for i in list :
-			painter.setBrush(Qt.red)
+			path.setBrush(Qt.red)
+
+		painter.drawPath(path)
 
 
 	def press(self, event):
