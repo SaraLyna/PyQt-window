@@ -58,6 +58,14 @@ class CanvasDessin(QWidget):
 			self.update()
 
 
+	def set_pen_color(self, color):
+		self.pen_color = color
+		
+		
+	def set_pen_width(self, width):
+		self.pen_width = width
+
+
 
 
 
