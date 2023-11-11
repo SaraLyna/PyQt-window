@@ -5,23 +5,17 @@ from PyQt5.QtCore import *
 
 from Trace import Trace
 
-
 class CanvasDessin(QWidget):
-
 	def __init__(self):
 		super().__init__()
 		self.setMinimumSize(800,600)
 		self.traces = []
 		self.current_trace = None
 
-
-
-	def paintEvent(self, event):
-		
+	def paintEvent(self, event):	
 		painter = QPainter(self)
 
 		for trace in self.traces :
-
 			path = QPainterPath()
 			pen = QPen(trace.color, trace.width,cap=Qt.RoundCap, join=Qt.RoundJoin )
 			painter.setPen(pen)
@@ -33,16 +27,15 @@ class CanvasDessin(QWidget):
 			painter.drawPath(path)
 
 		if self.current_trace:
-
-			path2 = QPainterPath()
-            pen2 = QPen(self.current_trace.color, self.current_trace.width, cap=Qt.RoundCap, join=Qt.RoundJoin)
-            painter.setPen(pen2)
-            path2.moveTo(self.current_trace.points[0])
-
-            for point in self.current_trace.points[1:]:
-                path2.lineTo(point)
-
-            painter.drawPath(path2)
+			path = QPainterPath()
+			pen = QPen(self.current_trace.color, self.current_trace.width, cap=Qt.RoundCap, join=Qt.RoundJoin)
+			painter.setPen(pen)
+			path.moveTo(self.current_trace.points[0])
+			
+			for point in self.current_trace.points[1:]:
+				path.lineTo(point)
+				
+			painter.drawPath(path)
 
 
 	def press(self, event):
