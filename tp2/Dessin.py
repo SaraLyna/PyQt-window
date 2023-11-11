@@ -10,7 +10,7 @@ from CanvasDessin import CanvasDessin
 """1e Etape: Créer un nouveau projet affichant une zone de dessin"""
 
 class Dessin(QMainWindow):
-
+	action = None
 	def __init__(self):
 		super().__init__()
 		self.canvas = CanvasDessin()
@@ -22,9 +22,9 @@ class Dessin(QMainWindow):
 	def createToolBar(self):
 		toolBar = QToolBar()
 
-		action = QAction('Color', self)
+		self.action = QAction(self)
 		self.updateColor()
-		action.triggered.connect(self.chooseColor)
+		self.action.triggered.connect(self.chooseColor)
 
 		slider = QSlider()
 		slider.setOrientation(Qt.Horizontal)
@@ -35,19 +35,20 @@ class Dessin(QMainWindow):
 		button = QPushButton('Clear')
 		button.clicked.connect(self.clearCanvas)
 
-		toolBar.addAction(action)
+		toolBar.addAction(self.action)
 		toolBar.addWidget(slider)
 		toolBar.addWidget(button)
 
+		self.addToolBarBreak(Qt.TopToolBarArea)
 		self.addToolBar(toolBar)
 
 
 
 	def updateColor(self):
-		pixmap = QPixMap(20, 20)
+		pixmap = QPixmap(20, 20)
 		pixmap.fill(self.canvas.pen_color)
-		icon = QIcon(color_pixmap)
-		self.toolBar().actions()[0].setIcon(icon)
+		icon = QIcon(pixmap)
+		self.action.setIcon(icon)
 
 	def chooseColor(self):
 		color = QColorDialog.getColor(self.canvas.pen_color)

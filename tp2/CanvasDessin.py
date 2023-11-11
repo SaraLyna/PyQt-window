@@ -41,7 +41,7 @@ class CanvasDessin(QWidget):
 
 
 	def press(self, event):
-		self.current_trace = Trace([event.pos()], 3, Qt.red)
+		self.current_trace = Trace([event.pos()], self.pen_width, self.pen_color)
 		self.update()
 
 
