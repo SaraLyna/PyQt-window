@@ -44,10 +44,12 @@ class Dessin(QMainWindow):
 	def chooseColor(self):
 		color = QColorDialog.getColor()
 		if color.isValid():
-			self.canvas.pen_color(color)
+			self.canvas.pen_color = color
+			self.canvas.update()
 			
 	def setWidth(self, width):
-		self.canvas.pen_width(width)
+		self.canvas.pen_width = width
+		self.canvas.update()
 		
 	def clearCanvas(self):
 		self.canvas.traces = []

@@ -11,6 +11,8 @@ class CanvasDessin(QWidget):
 		self.setMinimumSize(800,600)
 		self.traces = []
 		self.current_trace = None
+		self.pen_color = Qt.black
+		self.pen_width = 2
 
 	def paintEvent(self, event):	
 		painter = QPainter(self)
