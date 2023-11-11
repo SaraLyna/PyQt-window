@@ -10,8 +10,8 @@ from PyQt5.QtCore import *
 
 class Trace():
 
-	def __init__(self):
+	def __init__(self, points, width, color):
 		super().__init__(self)
-		self.points = [width, color]
-		self.width = int
-		self.color = QColor()
+		self.points = points
+		self.width = width
+		self.color = color

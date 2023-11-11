@@ -16,18 +16,55 @@ class Dessin(QMainWindow):
 		self.canvas = CanvasDessin()
 		self.setCentralWidget(self.canvas)
 
+		self.createToolBar()
+
+
+	def createToolBar(self):
+		toolBar = QToolBar()
+
+		action = QAction('Color', self)
+		action.triggered.connect(self.chooseColor)
+
+		slider = QSlider()
+		slider.setOrientation(Qt.Horizontal)
+		slider.setMinimum(1)
+		slider.setMaximum(20)
+		slider.valueChanged.connect(self.setWidth)
+
+		button = QPushButton('Clear')
+		button.clicked.connect(self.clearCanvas)
+
+		toolBar.addAction(action)
+		toolBar.addWidget(slider)
+		toolBar.addWidget(button)
+
+		self.addToolBar(toolBar)
+
+
+	def chooseColor(self):
+		color = QColorDialog.getColor()
+		if color.isValid():
+			self.canvas.set_pen_color(color)
+			
+	def setWidth(self, width):
+		self.canvas.set_pen_width(width)
+		
+	def clearCanvas(self):
+		self.canvas.traces = []
+		self.canvas.update()
+
 
 def main(args):
 	print(args)
  
-    window = QMainWindow()
+    """window = QMainWindow()"""
 
 	app = QApplication(args)
 	dessin= Dessin()
 
 	dessin.show()
 
-	window.show()
+	"""window.show()"""
 	
 	app.exec_()
 	return

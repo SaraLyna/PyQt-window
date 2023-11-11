@@ -10,8 +10,8 @@ class CanvasDessin(QWidget):
 
 	def __init__(self):
 		super().__init__()
-		self.widget = QWidget(None).setMinimumSize(800,600)
-		self.list = [Trace]
+		self.setMinimumSize(800,600)
+		self.traces = []
 
 
 
@@ -19,7 +19,7 @@ class CanvasDessin(QWidget):
 		
 		painter = QPainter(self)
 		path = QPainterPath()
-		for i in list :
+		for trace in self.traces :
 			path.setBrush(Qt.red)
 
 		painter.drawPath(path)
