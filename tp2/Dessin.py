@@ -21,6 +21,7 @@ class Dessin(QMainWindow):
 
 	def createToolBar(self):
 		toolBar = QToolBar()
+		self.addToolBar(toolBar)
 
 		self.action = QAction(self)
 		self.updateColor()
@@ -29,7 +30,7 @@ class Dessin(QMainWindow):
 		slider = QSlider()
 		slider.setOrientation(Qt.Horizontal)
 		slider.setMinimum(1)
-		slider.setMaximum(20)
+		slider.setMaximum(10)
 		slider.valueChanged.connect(self.setWidth)
 
 		button = QPushButton('Clear')
@@ -39,8 +40,8 @@ class Dessin(QMainWindow):
 		toolBar.addWidget(slider)
 		toolBar.addWidget(button)
 
-		self.addToolBarBreak(Qt.TopToolBarArea)
-		self.addToolBar(toolBar)
+		#self.addToolBarBreak(Qt.TopToolBarArea)
+		
 
 
 
@@ -64,15 +65,6 @@ class Dessin(QMainWindow):
 		self.canvas.traces = []
 		self.canvas.update()
 
-
-	def mousePressEvent(self, event):
-		self.canvas.press(event)
-		
-	def mouseMoveEvent(self, event):
-		self.canvas.drag(event)
-		
-	def mouseReleaseEvent(self, event):
-		self.canvas.release(event)
 
 
 	

@@ -19,7 +19,7 @@ class CanvasDessin(QWidget):
 
 		for trace in self.traces :
 			path = QPainterPath()
-			pen = QPen(trace.color, trace.width,cap=Qt.RoundCap, join=Qt.RoundJoin )
+			pen = QPen(trace.color, trace.width)
 			painter.setPen(pen)
 			path.moveTo(trace.points[0])
 
@@ -30,7 +30,7 @@ class CanvasDessin(QWidget):
 
 		if self.current_trace:
 			path = QPainterPath()
-			pen = QPen(self.current_trace.color, self.current_trace.width, cap=Qt.RoundCap, join=Qt.RoundJoin)
+			pen = QPen(self.current_trace.color, self.current_trace.width)
 			painter.setPen(pen)
 			path.moveTo(self.current_trace.points[0])
 			
@@ -40,18 +40,18 @@ class CanvasDessin(QWidget):
 			painter.drawPath(path)
 
 
-	def press(self, event):
+	def mousePressEvent(self, event):
 		self.current_trace = Trace([event.pos()], self.pen_width, self.pen_color)
 		self.update()
 
 
-	def drag(self, event):
+	def mouseMoveEvent(self, event):
 		if self.current_trace:
 			self.current_trace.points.append(event.pos())
 			self.update()
 
 
-	def release(self, event):
+	def mouseReleaseEvent(self, event):
 		if self.current_trace:
 			self.traces.append(self.current_trace)
 			self.current_trace = None
